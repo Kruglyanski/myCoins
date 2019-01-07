@@ -1,0 +1,17 @@
+
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #4bbbb6;
+}
+h1 {
+  margin: 0 auto;
+  position: relative;
+  width: 100vh;
+  color: #ebf3f0
+}
