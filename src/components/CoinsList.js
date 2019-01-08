@@ -13,6 +13,7 @@ import Coin from '../components/Coin'
 class CoinsList extends Component {
   componentDidMount() {
   this.props.getCoins();
+  //this.props.getPrices();
   }
   render() {
     const {coins} = this.props

@@ -15,23 +15,18 @@ export default actionsPrices
 
 
 export const getPrices = () => async (dispatch, getState) => {
-
   const { prices } = getState()
-
-
   dispatch(actionsPrices.prices.request())
 
   try {
-    const result = await apiPrices.apiGetPrices()
-    console.log(result)
+    const result = await apiPrices.apiGetPrice()
+    console.log('result:',result)
     const items = _.map(result, (item) => item)
-    console.log(items)
+    console.log('items:', items)
     dispatch(
-      actionsPrices.coins.success({
+      actionsPrices.prices.success({
         items: [...prices.items, ...items]
-
       })
-
     )
   } catch (e) {
     dispatch(actionsPrices.prices.error({ error: e }))

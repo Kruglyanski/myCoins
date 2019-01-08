@@ -1,7 +1,7 @@
 import { handleActions }  from 'redux-actions'
 import actionsPrices from '../actions/prices'
 
-export const initialState = {
+ const initialState = {
   isFetching: false,
   error: '',
   items: [],

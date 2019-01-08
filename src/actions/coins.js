@@ -3,6 +3,7 @@ import { createActions } from 'redux-actions'
 import mapper from '../mappers/coins'
 import api from '../api/coins'
 import * as  _  from 'lodash'
+import { getPrices } from '../actions/prices'
 
 const actions = createActions({
   coins: {
@@ -30,6 +31,10 @@ export const getCoins = () => async (dispatch, getState) => {
         items: [...coins.items, ...items]
       })
     )
+    dispatch(getPrices())
+
+
+
   } catch (e) {
     dispatch(actions.coins.error({ error: e }))
     console.log(e)
