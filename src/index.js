@@ -7,13 +7,12 @@ import thunk from 'redux-thunk'
 import { logger } from 'redux-logger'
 import { Provider } from 'react-redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
-
+import 'semantic-ui-css/semantic.min.css'
 import reducers from './reducers'
 
 const store = createStore( reducers , composeWithDevTools(
   applyMiddleware(thunk, logger)
 ))
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

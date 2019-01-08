@@ -8,7 +8,7 @@ export default coin => {
     fullyPremined: coin.FullyPremined,
     id: coin.Id,
     imageUrl: coin.ImageUrl,
-    isTradingd: coin.IsTrading,
+    isTrading: coin.IsTrading,
     name: coin.Name,
     preMinedValue: coin.PreMinedValue,
     proofType: coin.ProofType,

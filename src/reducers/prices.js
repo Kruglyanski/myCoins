@@ -1,5 +1,5 @@
-import { handleActions } from 'redux-actions'
-import actions from '../actions/coins'
+import { handleActions }  from 'redux-actions'
+import actionsPrices from '../actions/prices'
 
 export const initialState = {
   isFetching: false,
@@ -9,23 +9,24 @@ export const initialState = {
 
 export default handleActions(
   {
-    [actions.coins.request]: state => ({
+    [actionsPrices.prices.request]: state => ({
       ...state,
       isFetching: true,
       error: '',
     }),
 
-    [actions.coins.success]: (state, { payload }) => ({
+    [actionsPrices.prices.success]: (state, { payload }) => ({
       ...state,
       isFetching: false,
       items: payload.items
     }),
 
-    [actions.coins.error]: (state, { payload }) => ({
+    [actionsPrices.prices.error]: (state, { payload }) => ({
       ...state,
       isFetching: false,
       error: payload.error,
     }),
+
   },
   initialState
 )
