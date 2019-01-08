@@ -4,7 +4,7 @@ import apiPrices from '../api/prices'
 import * as  _  from 'lodash'
 
 const actionsPrices = createActions({
-  price: {
+  prices: {
     request: x => x,
     success: x => x,
     error: x => x,
@@ -22,9 +22,9 @@ export const getPrices = () => async (dispatch, getState) => {
   dispatch(actionsPrices.prices.request())
 
   try {
-    const resultPrices = await apiPrices.apiGetPrices()
-    console.log(resultPrices)
-    const items = _.map(resultPrices, (item) => item)
+    const result = await apiPrices.apiGetPrices()
+    console.log(result)
+    const items = _.map(result, (item) => item)
     console.log(items)
     dispatch(
       actionsPrices.coins.success({

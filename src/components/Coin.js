@@ -16,6 +16,7 @@ const coin = ({coins}) => (
         <Table.HeaderCell>Smart Contract Address</Table.HeaderCell>
         <Table.HeaderCell>Symbol</Table.HeaderCell>
         <Table.HeaderCell>Total Coin Supply</Table.HeaderCell>
+        <Table.HeaderCell>Price (USD)</Table.HeaderCell>
       </Table.Row>
     </Table.Header>
     <Table.Body>
@@ -63,6 +64,8 @@ const coin = ({coins}) => (
               </Table.Cell>
               <Table.Cell>
                 {item.totalCoinSupply}
+              </Table.Cell>
+              <Table.Cell>
               </Table.Cell>
             </Table.Row>
             )
