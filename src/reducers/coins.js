@@ -18,7 +18,7 @@ export default handleActions(
     [actions.coins.success]: (state, { payload }) => ({
       ...state,
       isFetching: false,
-      items: payload.items
+      items: payload.items,
     }),
 
     [actions.coins.error]: (state, { payload }) => ({

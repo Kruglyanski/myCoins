@@ -1,6 +1,5 @@
 export default coin => {
   return {
-
     algorithm: coin.Algorithm,
     builtOn: coin.BuiltOn,
     coinName: coin.CoinName,
@@ -18,6 +17,6 @@ export default coin => {
     symbol: coin.Symbol,
     totalCoinSupply: coin.TotalCoinSupply,
     totalCoinsFreeFloat: coin.TotalCoinsFreeFloat,
-    url: coin.Url
+    url: coin.Url,
   }
 }

@@ -7,30 +7,28 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getCoins } from '../actions/coins'
 import { getPrices } from '../actions/prices'
-
 import Coin from '../components/Coin'
 
 class CoinsList extends Component {
   componentDidMount() {
-  this.props.getCoins();
+    this.props.getCoins()
   //this.props.getPrices();
   }
   render() {
     const {coins} = this.props
     return (
-        <div className="main-wrapper" >
-          <Coin coins={coins}/>
-        </div>
+      <div className="main-wrapper" >
+        <Coin coins={coins}/>
+      </div>
 
     )
-  };
+  }
 }
-
 
 const mapStateToProps = state => {
   return {
     coins: getCoinsList(state),
-    prices: getPricesList(state)
+    prices: getPricesList(state),
   }
 }
 
@@ -38,7 +36,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       getCoins,
-      getPrices
+      getPrices,
     },
     dispatch
   )
@@ -47,7 +45,7 @@ CoinsList.propTypes = {
   getCoins: PropTypes.func.isRequired,
   coins: PropTypes.instanceOf(Array),
   getPrices: PropTypes.func.isRequired,
-  prices: PropTypes.instanceOf(Array)
+  prices: PropTypes.instanceOf(Array),
 }
 
 export default connect(

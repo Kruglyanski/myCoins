@@ -7,5 +7,5 @@ import prices from './prices'
 export default combineReducers({
   routing: routerReducer,
   coins,
-  prices
+  prices,
 })
