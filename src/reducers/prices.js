@@ -4,8 +4,9 @@ import actionsPrices from '../actions/prices'
 const initialState = {
   isFetching: false,
   error: '',
-  items: [],
+  items: {},
 }
+
 
 export default handleActions(
   {
@@ -27,5 +28,6 @@ export default handleActions(
       error: payload.error,
     }),
   },
+
   initialState
 )

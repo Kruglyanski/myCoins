@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Image, Table, Header } from 'semantic-ui-react'
 
-const coin = ({coins}) => (
+const coin = ({coins}, {prices}) => (
   <Table selectable>
     <Table.Header>
       <Table.Row>
@@ -67,7 +67,7 @@ const coin = ({coins}) => (
               {item.totalCoinSupply}
             </Table.Cell>
             <Table.Cell>
-              {item.USD}
+
             </Table.Cell>
           </Table.Row>
         )
@@ -78,7 +78,7 @@ const coin = ({coins}) => (
 
 coin.propTypes = {
   coins: PropTypes.instanceOf(Array),
-
+  prices: PropTypes.instanceOf(Object),
 }
 
 export default coin

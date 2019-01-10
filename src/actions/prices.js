@@ -16,35 +16,30 @@ export default actionsPrices
 
 export const getPrices = () => async (dispatch, getState) => {
 
-  const {coins} = getState()
+  const {coins, prices} = getState()
   const withoutPrices =(_.reduce(coins.items, function (array, item) {
     if ( !item.price ) {
       array.push(item.symbol)
     }
     return array
-  }, [])).join()
-
-  //console.log('withoutPrices:', withoutPrices)
+  }, [])).join();
   dispatch(actionsPrices.prices.request())
 
   try {
-    const result = await apiPrices.apiGetPrice(withoutPrices)
-    //console.log('result:',result)
-    const items = _.map(result, (item) => item)
-    //console.log('usditems:', items)
+    const items = await apiPrices.apiGetPrice(withoutPrices)
+
 
     dispatch(
       actionsPrices.prices.success({
-      //Наверное можно было бы проще сделать
-        items:  _.each(items, function (item, index) {
-          coins.items[index].USD = item.USD
-        }),
-      })
+        items:  {...prices.items, ...items},
+      }),
+
     )
-    //console.log('items:', coins.items)
+
 
   } catch (e) {
     dispatch(actionsPrices.prices.error({ error: e }))
     console.log(e)
   }
 }
+
