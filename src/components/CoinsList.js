@@ -1,13 +1,18 @@
+//  React
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { getCoinsList } from '../selectors/coins'
-import { getPriceByCoin } from '../selectors/priceByCoin'
-import { getPricesList } from '../selectors/prices'
-import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getCoins } from '../actions/coins'
-import { getPrices  } from '../actions/prices'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
+// Components
 import Coin from '../components/Coin'
+
+// Selectors
+import { getCoinsList } from '../selectors/coins'
+import { getPrices } from '../selectors/prices'
+
+// Actions
+import { getCoins } from '../actions/coins'
 
 class CoinsList extends Component {
   componentDidMount() {
@@ -18,19 +23,20 @@ class CoinsList extends Component {
     const {coins, prices} = this.props
     return (
       <div className="main-wrapper" >
-        <Coin coins={coins} prices ={prices}/>
+        <Coin
+          coins={coins}
+          prices={prices}
+        />
       </div>
 
     )
   }
 }
 
-const mapStateToProps = (state, props) => {
-    const pricesSymbol = +props.USD
-
+const mapStateToProps = (state) => {
   return {
     coins: getCoinsList(state),
-    prices: getPriceByCoin(pricesSymbol)(state),
+    prices: getPrices(state),
   }
 }
 
@@ -46,7 +52,6 @@ const mapDispatchToProps = dispatch =>
 CoinsList.propTypes = {
   getCoins: PropTypes.func.isRequired,
   coins: PropTypes.instanceOf(Array),
-  getPrices: PropTypes.func.isRequired,
   prices: PropTypes.instanceOf(Object),
 }
 

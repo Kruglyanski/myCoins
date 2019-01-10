@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Image, Table, Header } from 'semantic-ui-react'
 
-const coin = ({coins}, {prices}) => (
+const coin = ({coins, prices}) => (
   <Table selectable>
     <Table.Header>
       <Table.Row>
@@ -22,6 +22,8 @@ const coin = ({coins}, {prices}) => (
     </Table.Header>
     <Table.Body>
       {coins.map(item => {
+        const price = prices && prices[item.symbol]
+        const priceUSD = price && price.USD
         return (
           <Table.Row key={item.id}>
             <Table.Cell>
@@ -67,7 +69,7 @@ const coin = ({coins}, {prices}) => (
               {item.totalCoinSupply}
             </Table.Cell>
             <Table.Cell>
-
+              {priceUSD}
             </Table.Cell>
           </Table.Row>
         )
