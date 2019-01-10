@@ -22,7 +22,7 @@ const coin = ({coins, prices}) => (
     </Table.Header>
     <Table.Body>
       {coins.map(item => {
-        const price = prices && prices[item.symbol]
+        const price = prices[item.symbol]
         const priceUSD = price && price.USD
         return (
           <Table.Row key={item.id}>
