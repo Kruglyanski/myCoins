@@ -22,8 +22,12 @@ export const getPrices = () => async (dispatch, getState) => {
       array.push(item.symbol)
     }
     return array
-  }, [])).join();
-  dispatch(actionsPrices.prices.request())
+  }, [])).join()
+  const isFetching = false
+  dispatch(actionsPrices.prices.request({
+    isFetching: prices.isFetching = isFetching,
+  }),
+  )
 
   try {
     const items = await apiPrices.apiGetPrice(withoutPrices)
@@ -32,6 +36,7 @@ export const getPrices = () => async (dispatch, getState) => {
     dispatch(
       actionsPrices.prices.success({
         items:  {...prices.items, ...items},
+        isFetching: prices.isFetching = isFetching,
       }),
 
     )

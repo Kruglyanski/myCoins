@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Image, Table, Header } from 'semantic-ui-react'
+import { Image, Table, Header, Loader } from 'semantic-ui-react'
 
 const coin = ({coins, prices}) => (
+
   <Table selectable>
+    {console.log('prices', prices)}
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell >Name</Table.HeaderCell>
@@ -22,7 +24,7 @@ const coin = ({coins, prices}) => (
     </Table.Header>
     <Table.Body>
       {coins.map(item => {
-        const price = prices && prices[item.symbol]
+        const price = prices[item.symbol]
         const priceUSD = price && price.USD
         return (
           <Table.Row key={item.id}>
@@ -69,13 +71,16 @@ const coin = ({coins, prices}) => (
               {item.totalCoinSupply}
             </Table.Cell>
             <Table.Cell>
-              {priceUSD}
+              {console.log('prices.isFetching', prices.isFetching)}
+              {prices.isFetching ? <Loader active inline='centered' /> :
+                (price !== undefined) ? priceUSD : '-'}
             </Table.Cell>
           </Table.Row>
         )
       })}
     </Table.Body>
   </Table>
+
 )
 
 coin.propTypes = {

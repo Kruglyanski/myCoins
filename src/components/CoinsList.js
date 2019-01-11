@@ -14,12 +14,14 @@ import { getPrices } from '../selectors/prices'
 // Actions
 import { getCoins } from '../actions/coins'
 
+
 class CoinsList extends Component {
   componentDidMount() {
     this.props.getCoins()
 
   }
   render() {
+
     const {coins, prices} = this.props
     return (
       <div className="main-wrapper" >
@@ -34,6 +36,7 @@ class CoinsList extends Component {
 }
 
 const mapStateToProps = (state) => {
+
   return {
     coins: getCoinsList(state),
     prices: getPrices(state),
@@ -57,5 +60,6 @@ CoinsList.propTypes = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+
 )(CoinsList)
