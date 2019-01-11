@@ -2,10 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Image, Table, Header, Loader } from 'semantic-ui-react'
 
-const coin = ({coins, prices}) => (
+const coin = ({coins, prices, isPricesFetching}) => (
 
   <Table selectable>
-    {console.log('prices', prices)}
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell >Name</Table.HeaderCell>
@@ -71,9 +70,9 @@ const coin = ({coins, prices}) => (
               {item.totalCoinSupply}
             </Table.Cell>
             <Table.Cell>
-              {console.log('prices.isFetching', prices.isFetching)}
-              {prices.isFetching ? <Loader active inline='centered' /> :
-                (price !== undefined) ? priceUSD : '-'}
+              {!priceUSD && isPricesFetching
+                ? <Loader active inline='centered' />
+                : (price !== undefined) ? priceUSD : '-'}
             </Table.Cell>
           </Table.Row>
         )
