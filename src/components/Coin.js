@@ -85,6 +85,7 @@ const coin = ({coins, prices, isPricesFetching}) => (
 coin.propTypes = {
   coins: PropTypes.instanceOf(Array),
   prices: PropTypes.instanceOf(Object),
+  isPricesFetching:PropTypes.bool,
 }
 
 export default coin

@@ -18,18 +18,20 @@ export const getPrices = () => async (dispatch, getState) => {
 
   const {coins, prices} = getState()
 
-  const withoutPrices =(_.reduce(coins.items, function (array, item) {
+  const requestPrices =(_.reduce(coins.items, function (array, item) {
     if ( !item.price ) {
       array.push(item.symbol)
     }
     return array
-  }, [])).join()
-  //const isFetching = false
+  }, [])).slice((coins.page * 20), (coins.page * 20 + 20)).join()
+
+  console.log('requestPrices', requestPrices)
+
   dispatch(actionsPrices.prices.request())
 
   try {
 
-    const items = await apiPrices.apiGetPrice(withoutPrices)
+    const items = await apiPrices.apiGetPrice(requestPrices)
 
     dispatch(
       actionsPrices.prices.success({

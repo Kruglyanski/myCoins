@@ -29,13 +29,16 @@ export const getCoins = () => async (dispatch, getState) => {
   try {
     const result = await api.apiGetCoins()
 
+    //Количество страниц:
     const totalPages = Math.ceil((JSON.stringify(result.Data).match(/ImageUrl/g).length)/20)
 
+    //Объект со всеми полученными криптовалютами
     const totalItems = result.Data
-    console.log('totalItemsObjectCL', totalItems )
+
     const page = coins.page
+
     const items =_.map(totalItems, mapper)
-    console.log('page', page)
+
     dispatch(
       actions.coins.success({
         items: [...coins.items, ...items],
@@ -61,4 +64,5 @@ export const getPage =(data) => (dispatch) => {
       page: currentPage,
     })
   )
+   dispatch(getPrices())
 }

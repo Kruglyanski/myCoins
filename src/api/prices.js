@@ -1,7 +1,7 @@
 export default {
-  apiGetPrice: () => {
+  apiGetPrice: (endpoint) => {
     return (
-      fetch(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC&tsyms=USD`, {
+      fetch(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${endpoint}&tsyms=USD`, {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -10,4 +10,4 @@ export default {
       }).then(response => response.json()))
   },
 }
-//${endpoint} заглушен BTC
+

@@ -16,35 +16,39 @@ import { getCoins } from '../actions/coins'
 import { getPage } from '../actions/coins'
 
 class CoinsList extends Component {
+
   componentDidMount() {
     this.props.getCoins()
   }
     handlePageClick = (data) => {
       this.props.getPage(data)
-        console.log('data', data.target)
-        console.log('data', data.target.getAttribute('value'))
+
     }
 
     render() {
-      const {coins, prices, isPricesFetching, page, totalItems, totalPages } = this.props
-      console.log('page CoinsList', page)
+      const {coins, prices, isPricesFetching, page, totalPages} = this.props
+
       //const totalPages = ((JSON.stringify(totalItems).match(/ImageUrl/g)).length)/20 ???не работает здесь
       return (
+
         <div className="main-wrapper" >
+
           <Coin
             coins={coins.slice((page*20), (page*20+20))}
             prices={prices}
             isPricesFetching={isPricesFetching}
           />
+
           <div  className='paging'>
+
             <Pagination
               defaultActivePage={1}
               totalPages={totalPages}
               onPageChange={(data) =>this.handlePageClick(data)}
             />
 
-
           </div>
+
         </div>
       )
     }
@@ -80,6 +84,7 @@ CoinsList.propTypes = {
   getCoins: PropTypes.func.isRequired,
   totalPages:PropTypes.number,
   page:PropTypes.number,
+  getPage:PropTypes.func.isRequired,
 }
 
 export default connect(
