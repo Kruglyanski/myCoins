@@ -52,12 +52,13 @@ export const getCoins = () => async (dispatch, getState) => {
   }
 }
 
-export const getPage =() => (dispatch, getState) => {
-  const { coins } = getState()
-  const page = coins.page
+export const getPage =(data) => (dispatch) => {
+
+  const currentPage = data.target.getAttribute('value') - 1
+
   dispatch(
     actions.coins.page.success({
-      page: page,
+      page: currentPage,
     })
   )
 }

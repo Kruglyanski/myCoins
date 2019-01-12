@@ -28,17 +28,14 @@ export const getPrices = () => async (dispatch, getState) => {
   dispatch(actionsPrices.prices.request())
 
   try {
-    const items = await apiPrices.apiGetPrice(withoutPrices)
 
+    const items = await apiPrices.apiGetPrice(withoutPrices)
 
     dispatch(
       actionsPrices.prices.success({
         items:  {...prices.items, ...items},
-
       }),
-
     )
-
 
   } catch (e) {
     dispatch(actionsPrices.prices.error({ error: e }))

@@ -19,8 +19,10 @@ class CoinsList extends Component {
   componentDidMount() {
     this.props.getCoins()
   }
-    handlePageClick = () => {
-      this.props.getPage()
+    handlePageClick = (data) => {
+      this.props.getPage(data)
+        console.log('data', data.target)
+        console.log('data', data.target.getAttribute('value'))
     }
 
     render() {
@@ -38,7 +40,7 @@ class CoinsList extends Component {
             <Pagination
               defaultActivePage={1}
               totalPages={totalPages}
-              onPageChange={this.handlePageClick()}
+              onPageChange={(data) =>this.handlePageClick(data)}
             />
 
 
