@@ -27,6 +27,7 @@ export default handleActions(
       isFetching: false,
       error: payload.error,
     }),
+
   },
 
   initialState

@@ -6,3 +6,8 @@ body {
 h1 {
   width: 100vh;
 }
+.paging{
+  margin: 0 auto;
+  width: 470px;
+  position: relative;
+}

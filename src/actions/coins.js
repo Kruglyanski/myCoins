@@ -11,7 +11,11 @@ const actions = createActions({
     request: x => x,
     success: x => x,
     error: x => x,
+    page: {
+      success: x => x,
+    },
   },
+
 })
 
 export default actions
@@ -24,12 +28,20 @@ export const getCoins = () => async (dispatch, getState) => {
 
   try {
     const result = await api.apiGetCoins()
-    //console.log('Result.Data:', result.Data )
-    const items =_.map(result.Data, mapper).slice(0, 20)
-    //console.log('items', items)
+
+    const totalPages = Math.ceil((JSON.stringify(result.Data).match(/ImageUrl/g).length)/20)
+
+    const totalItems = result.Data
+    console.log('totalItemsObjectCL', totalItems )
+    const page = coins.page
+    const items =_.map(totalItems, mapper)
+    console.log('page', page)
     dispatch(
       actions.coins.success({
         items: [...coins.items, ...items],
+        page,
+        totalItems,
+        totalPages,
       })
     )
     dispatch(getPrices())
@@ -38,4 +50,14 @@ export const getCoins = () => async (dispatch, getState) => {
     dispatch(actions.coins.error({ error: e }))
     console.log(e)
   }
+}
+
+export const getPage =() => (dispatch, getState) => {
+  const { coins } = getState()
+  const page = coins.page
+  dispatch(
+    actions.coins.page.success({
+      page: page,
+    })
+  )
 }
